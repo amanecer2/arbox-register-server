@@ -33,6 +33,11 @@ fs.readFile("src/data/data.json", "utf8", function (err, data) {
     app.use(bodyParser.json());
     app.use(cors());
     app.options('*', cors());
+    app.use(function(req, res, next) {
+        res.header("Access-Control-Allow-Origin", "*");
+        res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+        next();
+    });
 
     var allowedOrigins = ['http://localhost:3000', 'http://localhost:8080', 'http://localhost:8100', 'http://localhost',
         'http://localhost:8100/'];
