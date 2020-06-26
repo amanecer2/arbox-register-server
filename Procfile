@@ -1,1 +1,1 @@
-git add .
+web: npm start
