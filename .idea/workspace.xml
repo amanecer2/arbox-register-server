@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="639dccf4-d812-4007-8914-d7abd9ebe6a9" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/.gitignore" afterDir="false" />
-    </list>
+    <list default="true" id="639dccf4-d812-4007-8914-d7abd9ebe6a9" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -70,11 +67,20 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/.gitignore">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="27">
               <caret line="1" lean-forward="true" selection-start-line="1" selection-end-line="1" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/index.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="189">
+              <caret line="7" column="9" selection-start-line="7" selection-start-column="9" selection-end-line="7" selection-end-column="9" />
             </state>
           </provider>
         </entry>
@@ -116,6 +122,7 @@
       <list>
         <option value="tsconfig.json" />
         <option value="TypeScript File" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
@@ -160,6 +167,7 @@
         <option value="$PROJECT_DIR$/src/routes/arbox.ts" />
         <option value="$PROJECT_DIR$/package.json" />
         <option value="$PROJECT_DIR$/src/.gitignore" />
+        <option value="$PROJECT_DIR$/src/index.html" />
       </list>
     </option>
   </component>
@@ -185,6 +193,11 @@
             <path>
               <item name="arbox-register" type="b2602c69:ProjectViewProjectNode" />
               <item name="arbox-register" type="462c0819:PsiDirectoryNode" />
+              <item name="dist" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="arbox-register" type="b2602c69:ProjectViewProjectNode" />
+              <item name="arbox-register" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
@@ -195,6 +208,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../arbox-register-firebase" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
@@ -203,12 +217,13 @@
     <property name="ts.external.directory.path" value="C:\WEB_PROJECTS\arbox-register\node_modules\typescript\lib" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\WEB_PROJECTS\arbox-register\src\utils" />
-      <recent name="C:\WEB_PROJECTS\arbox-register\src" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\WEB_PROJECTS\arbox-register" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\WEB_PROJECTS\arbox-register" />
+      <recent name="C:\WEB_PROJECTS\arbox-register\src\utils" />
+      <recent name="C:\WEB_PROJECTS\arbox-register\src" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -251,12 +266,12 @@
       <workItem from="1593068996994" duration="599000" />
       <workItem from="1593088739460" duration="599000" />
       <workItem from="1593091047823" duration="778000" />
-      <workItem from="1593184379590" duration="236000" />
+      <workItem from="1593184379590" duration="512000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="47049000" />
+    <option name="totallyTimeSpent" value="47325000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -269,7 +284,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="1912" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.1988366" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -617,10 +631,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/.gitignore">
+    <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="27">
           <caret line="1" lean-forward="true" selection-start-line="1" selection-end-line="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="189">
+          <caret line="7" column="9" selection-start-line="7" selection-start-column="9" selection-end-line="7" selection-end-column="9" />
         </state>
       </provider>
     </entry>
