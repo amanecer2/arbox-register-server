@@ -39,23 +39,6 @@ fs.readFile("src/data/data.json", "utf8", function (err, data) {
         next();
     });
 
-    var allowedOrigins = ['http://localhost:3000', 'http://localhost:8080', 'http://localhost:8100', 'http://localhost',
-        'http://localhost:8100/'];
-
-    app.use(cors({
-        origin: function (origin, callback) {
-            // allow requests with no origin
-            // (like mobile apps or curl requests)
-            if (!origin) return callback(null, true);
-            if (allowedOrigins.indexOf(origin) === -1) {
-                var msg = 'The CORS policy for this site does not ' +
-                    'allow access from the specified Origin.';
-                return callback(new Error(msg), false);
-            }
-            return callback(null, true);
-        }
-    }));
-
     app.use('/arbox', arboxRouter(arboxUserSchedule));
     app.get('/', (req, res) => {
         res.send('hello')
