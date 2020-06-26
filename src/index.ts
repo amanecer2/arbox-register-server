@@ -1,17 +1,3 @@
-import * as express from 'express';
-const app = express();
-
-let listenPort = process.env.PORT || 3000;
-app.get('/', (req, res)=> {
-    res.json({'helo': 'workl'})
-})
-app.listen(listenPort, ()=> {
-    console.log("server running on port "+ listenPort);
-})
-
-/*
-import {rescheduleJob} from "node-schedule";
-
 var express = require('express'),
     bodyParser = require('body-parser'),
     fs = require('fs'),
@@ -64,9 +50,11 @@ fs.readFile("src/data/data.json", "utf8", function (err, data) {
     }));
 
     app.use('/arbox', arboxRouter(arboxUserSchedule));
-
+    app.get('/', (req, res) => {
+        res.send('hello')
+    })
     app.listen(port, () => {
         console.log('starting on port', port)
     });
 
-});*/
+});
