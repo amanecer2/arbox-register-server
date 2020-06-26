@@ -31,6 +31,7 @@ fs.readFile("src/data/data.json", "utf8", function (err, data) {
     app.use(loggerMiddleware);
     app.use(bodyParser.urlencoded({extended: true}));
     app.use(bodyParser.json());
+    app.use(cors());
 
     var allowedOrigins = ['http://localhost:3000', 'http://localhost:8080', 'http://localhost:8100', 'http://localhost',
         'http://localhost:8100/'];
