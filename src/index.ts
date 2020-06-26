@@ -11,8 +11,11 @@ var cors = require('cors');
 import {ArboxScheduleService} from "./utils/arbox-schedule";
 import arboxRouter from './routes/arbox';
 
+console.log('before');
 // @ts-ignore
 fs.readFile("src/data/data.json", "utf8", function (err, data) {
+    console.log('before');
+
     if (err) throw err;
 
 

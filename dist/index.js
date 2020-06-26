@@ -4,8 +4,10 @@ var express = require('express'), bodyParser = require('body-parser'), fs = requ
 var cors = require('cors');
 const arbox_schedule_1 = require("./utils/arbox-schedule");
 const arbox_1 = require("./routes/arbox");
+console.log('before');
 // @ts-ignore
 fs.readFile("src/data/data.json", "utf8", function (err, data) {
+    console.log('before');
     if (err)
         throw err;
     const arboxUserSchedule = new arbox_schedule_1.ArboxScheduleService();
