@@ -1,0 +1,1 @@
+{"version":3,"file":"index.js","sourceRoot":"","sources":["../../../../arbox-register-interface/interface/index.ts"],"names":[],"mappings":"","sourcesContent":["export * from './box'\r\nexport * from './login.interface'\r\nexport * from './schedule'"]}

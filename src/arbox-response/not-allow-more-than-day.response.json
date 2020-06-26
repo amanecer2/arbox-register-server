@@ -1,0 +1,4 @@
+{
+  "errorCode": 3006,
+  "message": "You're not allowed to book more than 1 per DAY"
+}
