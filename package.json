@@ -5,7 +5,7 @@
   "main": "dist/index.js",
   "scripts": {
     "start1":"tsc && node dist/index.js",
-    "start":"node try.js",
+    "start":"node try.js && node dist/index.js",
     "build": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1",
     "echo": "echo \"helllo \" "
