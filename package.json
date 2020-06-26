@@ -2,7 +2,7 @@
   "name": "arbox-register",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
     "start":"echo \"helllo \"",
     "start1":"tsc && node dist/index.js",
