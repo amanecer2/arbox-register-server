@@ -8,12 +8,11 @@ var express = require('express'),
     port = process.env.PORT || 3000;
 
 var cors = require('cors');
-import {ArboxScheduleService} from "./utils/arbox-schedule";
+import {ArboxScheduleService, IUser} from "./utils/arbox-schedule";
 import arboxRouter from './routes/arbox';
 
-console.log('before');
 // @ts-ignore
-fs.readFile("src/data/data.json", "utf8", function (err, data) {
+fs.readFile(`dist/data/data.json`, "utf8", function (err, data) {
     console.log('before');
 
     if (err) throw err;
@@ -40,6 +39,15 @@ fs.readFile("src/data/data.json", "utf8", function (err, data) {
     });
 
     app.use('/arbox', arboxRouter(arboxUserSchedule));
+
+    app.get('/is-user-login', (req, res) => {
+        const user: IUser = arboxUserSchedule.getUser(req.headers.accesstoken) as IUser;
+        if (user) {
+            return res.json(true)
+        }
+        return res.status(400).send(new Error('must re register'));
+    });
+
     app.get('/', (req, res) => {
         res.send('hello')
     })

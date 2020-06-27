@@ -3,10 +3,10 @@ import {ArboxScheduleService} from "./arbox-schedule";
 
 export const saveData = (arboxScheduleService: ArboxScheduleService) => {
     const data = {
-        users: JSON.stringify(arboxScheduleService.users),
-        schedule: JSON.stringify(arboxScheduleService.schedule)
+        users: arboxScheduleService.users,
+        schedule: arboxScheduleService.schedule
     };
-    fs.writeFile('src/data/data.json', JSON.stringify(data), function (err) {
+    fs.writeFile('dist/data/data.json', JSON.stringify(data), function (err) {
         if (err) return console.log(err);
         console.log('saved');
     });

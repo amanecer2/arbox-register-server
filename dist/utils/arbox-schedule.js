@@ -21,8 +21,30 @@ class ArboxScheduleService {
     }
     restoreData(data) {
         const _dat = JSON.parse(data);
-        this.users = JSON.parse(_dat.users);
-        this.schedule = JSON.parse(_dat.schedule);
+        try {
+            this._restoreUsers(JSON.parse(_dat.users));
+        }
+        catch (e) {
+            this._restoreUsers(_dat.users);
+        }
+        try {
+            this._restoreSchsule(JSON.parse(_dat.schedule));
+        }
+        catch (e) {
+            this._restoreSchsule(_dat.schedule);
+        }
+    }
+    _restoreUsers(data) {
+        this.users = data;
+    }
+    _restoreSchsule(data) {
+        Object.keys(data).forEach(userId => {
+            data[userId].forEach((s) => {
+                if (!date_fns_1.isAfter(new Date(), new Date(s.schedule.date))) {
+                    this.setUserSchedule(this.getUser(userId), s);
+                }
+            });
+        });
     }
     getUser(id) {
         return this.users[id];
@@ -56,6 +78,7 @@ class ArboxScheduleService {
         });
         this.schedule[_user.userFk].push(schedule);
         this.arboxSchedule.startSchedule(schedule, fetch);
+        this.save();
         return true;
     }
     removeUserSchedule(userId, scheduleId) {
@@ -65,6 +88,7 @@ class ArboxScheduleService {
         if (index > -1) {
             this.arboxSchedule.removeSchedule(this.schedule[userId][index].schedule.id);
             this.schedule[userId] = this.schedule[userId].filter((_, _index) => _index !== index);
+            this.save();
             return true;
         }
         return false;

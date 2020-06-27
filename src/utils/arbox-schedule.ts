@@ -1,7 +1,7 @@
 import {IScheduleItem} from "../interface/schedule";
 import * as schedule from 'node-schedule';
 import {Job} from "node-schedule";
-import {addHours} from "date-fns";
+import {addHours, isAfter} from "date-fns";
 import {API} from "../arbox-api/login";
 import {saveData} from "./save-file.utis";
 import {arboxAjax} from "./fetch";
@@ -14,8 +14,32 @@ export class ArboxScheduleService {
 
     restoreData(data) {
         const _dat = JSON.parse(data);
-        this.users = JSON.parse(_dat.users);
-        this.schedule = JSON.parse(_dat.schedule);
+
+        try {
+            this._restoreUsers(JSON.parse(_dat.users));
+        } catch (e) {
+            this._restoreUsers( _dat.users);
+        }
+
+        try {
+            this._restoreSchsule(JSON.parse(_dat.schedule))
+        }catch (e) {
+            this._restoreSchsule(_dat.schedule)
+        }
+
+    }
+    _restoreUsers(data) {
+        this.users = data;
+
+    }
+    _restoreSchsule(data) {
+        Object.keys(data).forEach( userId => {
+            data[userId].forEach((s: IScheduleItem) => {
+                if (!isAfter(new Date(), new Date(s.schedule.date))) {
+                    this.setUserSchedule(this.getUser(userId), s);
+                }
+            })
+        });
     }
 
     getUser(id) {
@@ -56,6 +80,8 @@ export class ArboxScheduleService {
 
         this.schedule[_user.userFk].push(schedule);
         this.arboxSchedule.startSchedule(schedule, fetch);
+        this.save();
+
 
         return true;
     }
@@ -67,7 +93,7 @@ export class ArboxScheduleService {
         if (index > -1) {
             this.arboxSchedule.removeSchedule(this.schedule[userId][index].schedule.id);
             this.schedule[userId] = this.schedule[userId].filter((_, _index) => _index !== index);
-
+            this.save();
             return true
         }
 

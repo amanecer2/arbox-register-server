@@ -16,6 +16,7 @@
   },
   "include": [
     "src/**/*",
+    "src/data/data.json",
     "dist/index.d.ts"
   ]
 }

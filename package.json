@@ -4,11 +4,12 @@
   "description": "",
   "main": "dist/index.js",
   "scripts": {
-    "start1": "tsc && node dist/index.js",
+    "start:dev": "tsc && node dist/index.js",
     "start": "node dist/index.js",
     "build": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "heroku": "git push heroku master"
+    "heroku": "npm build && git add . && git commit -m \"msg.\" && git push heroku master",
+    "argument": "echo \"The value of --foo is '${npm_config_foo}'\""
   },
   "author": "",
   "license": "ISC",

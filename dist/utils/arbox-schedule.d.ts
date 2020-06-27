@@ -4,6 +4,8 @@ export declare class ArboxScheduleService {
     schedule: IUsersSchedule;
     arboxSchedule: ArboxSchedule;
     restoreData(data: any): void;
+    _restoreUsers(data: any): void;
+    _restoreSchsule(data: any): void;
     getUser(id: any): IUser;
     setUser(user: IUser): void;
     removeUser(user: IUser): boolean;

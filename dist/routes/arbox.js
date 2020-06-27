@@ -6,15 +6,29 @@ const arboxRouter = express.Router();
 const _arboxSchedule = new arbox_schedule_1.ArboxSchedule();
 const _arboxUserSchedule = new arbox_schedule_1.ArboxScheduleService();
 const router = (arboxUserSchedule) => {
+    const mustHaveToken = function (request, response, next) {
+        const token = request.headers.accesstoken;
+        if (!token) {
+            response.status(401).send(new Error('\'must have token'));
+            return;
+        }
+        const user = arboxUserSchedule.getUser(request.headers.accesstoken);
+        if (!user) {
+            response.status(401).send(new Error('must have register'));
+            return;
+        }
+        request.body.authUser = user;
+        next();
+    };
     arboxRouter.post('/register-user', (req, res) => {
         const { user } = req.body;
         const { accesstoken: token } = req.headers;
         arboxUserSchedule.setUser(new arbox_schedule_1.User(user.userFk, user.membrshipUserFk, token));
         res.json(true);
     });
-    arboxRouter.post('/schedule', (req, res) => {
-        const { schedule } = req.body;
-        arboxUserSchedule.setUserSchedule(arboxUserSchedule.getUser(req.headers.accesstoken), schedule);
+    arboxRouter.post('/schedule', mustHaveToken, (req, res) => {
+        const { schedule, authUser } = req.body;
+        arboxUserSchedule.setUserSchedule(authUser, schedule);
         /**
         const fake: IScheduleItem | any = fakeScheduleItem;
         fake.schedule.date = format(new Date(), 'yyyy-MM-dd');
@@ -26,7 +40,12 @@ const router = (arboxUserSchedule) => {
          **/
         res.json([]);
     });
-    arboxRouter.delete('/schedule/:scheduleID', (req, res) => {
+    arboxRouter.get('/schedule', mustHaveToken, (req, res) => {
+        const { authUser } = req.body;
+        const data = arboxUserSchedule.getUserSchedule(authUser.userFk) || [];
+        res.json(data);
+    });
+    arboxRouter.delete('/schedule/:scheduleID', mustHaveToken, (req, res) => {
         /**
         const fake: IScheduleItem | any = fakeScheduleItem;
         fake.schedule.date = format(new Date(), 'yyyy-MM-dd');
@@ -37,7 +56,8 @@ const router = (arboxUserSchedule) => {
 
          **/
         const { scheduleID } = req.params;
-        arboxUserSchedule.removeUserSchedule(arboxUserSchedule.getUser(req.headers.accesstoken).userFk, +scheduleID);
+        const { authUser } = req.body;
+        arboxUserSchedule.removeUserSchedule(authUser.userFk, +scheduleID);
         res.json([]);
     });
     arboxRouter.get('/', (req, res) => {
