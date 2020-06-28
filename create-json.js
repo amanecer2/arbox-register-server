@@ -8,6 +8,11 @@ fs.readFile(__dirname + '/data/data.json', 'utf8', function (err, data)  {
 });
 
 function writeJson() {
+    const dir =     __dirname + '/data'
+    if (!fs.existsSync(dir)){
+        fs.mkdirSync(dir);
+    }
+
     fs.writeFile(__dirname + '/data/data.json', JSON.stringify({schedule: [], users: {}}), function (err) {
         if (err) return console.log(err);
     });
