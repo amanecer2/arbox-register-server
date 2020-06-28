@@ -1,0 +1,4 @@
+export const ARBOX_ERRORS = {
+    REGISTER_NOT_OPEN_YET: 3009,
+    NO_MORE_THAN_ONE_A_DAY: 3006
+};

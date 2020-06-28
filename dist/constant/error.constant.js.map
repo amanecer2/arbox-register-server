@@ -1,0 +1,1 @@
+{"version":3,"file":"error.constant.js","sourceRoot":"","sources":["../../src/constant/error.constant.ts"],"names":[],"mappings":";;AAAa,QAAA,YAAY,GAAG;IACxB,qBAAqB,EAAE,IAAI;IAC3B,sBAAsB,EAAE,IAAI;CAC/B,CAAC","sourcesContent":["export const ARBOX_ERRORS = {\r\n    REGISTER_NOT_OPEN_YET: 3009,\r\n    NO_MORE_THAN_ONE_A_DAY: 3006\r\n};\r\n"]}

@@ -5,6 +5,7 @@ import {addHours, isAfter} from "date-fns";
 import {API} from "../arbox-api/login";
 import {saveData} from "./save-file.utis";
 import {arboxAjax} from "./fetch";
+import {ARBOX_ERRORS} from "../constant/error.constant";
 
 export class ArboxScheduleService {
 
@@ -122,8 +123,10 @@ export class ArboxSchedule {
         const startTime = new Date(+new Date(timeBeforeAllow) - (3 * 10 * 1000)); // 30 seconds before
         const endTime = new Date(+new Date(timeBeforeAllow) + (2 * 60 * 1000)); // 2 min after
 
-        console.log('workoutDateWithTime', workoutDateWithTime);
-        console.log('timeBeforeAllow', timeBeforeAllow);
+        //console.log('workoutDateWithTime', workoutDateWithTime);
+       // console.log('timeBeforeAllow', timeBeforeAllow);
+        console.log('workout waiting ', scheduleItem.category, scheduleItem.schedule.date, scheduleItem.schedule.time )
+
         console.log('startTime', startTime);
         console.log('endTime', endTime);
 
@@ -136,8 +139,12 @@ export class ArboxSchedule {
             if (fetch) {
                 try {
                     const res = await fetch();
+
+                    if (res.errorCode === ARBOX_ERRORS.REGISTER_NOT_OPEN_YET) {
+                        return
+                    }
                     this.removeSchedule(scheduleItem.schedule.id);
-                    console.log('your in the workout!!', scheduleItem.schedule.id)
+                    console.log('your in the workout!!', scheduleItem.schedule.id, scheduleItem.category, res)
                 } catch (e) {
                     this.removeSchedule(scheduleItem.schedule.id);
                     console.log('shoething went wrong', e)

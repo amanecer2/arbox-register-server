@@ -13,6 +13,7 @@ const date_fns_1 = require("date-fns");
 const login_1 = require("../arbox-api/login");
 const save_file_utis_1 = require("./save-file.utis");
 const fetch_1 = require("./fetch");
+const error_constant_1 = require("../constant/error.constant");
 class ArboxScheduleService {
     constructor() {
         this.users = {};
@@ -113,8 +114,9 @@ class ArboxSchedule {
         }
         const startTime = new Date(+new Date(timeBeforeAllow) - (3 * 10 * 1000)); // 30 seconds before
         const endTime = new Date(+new Date(timeBeforeAllow) + (2 * 60 * 1000)); // 2 min after
-        console.log('workoutDateWithTime', workoutDateWithTime);
-        console.log('timeBeforeAllow', timeBeforeAllow);
+        //console.log('workoutDateWithTime', workoutDateWithTime);
+        // console.log('timeBeforeAllow', timeBeforeAllow);
+        console.log('workout waiting ', scheduleItem.category, scheduleItem.schedule.date, scheduleItem.schedule.time);
         console.log('startTime', startTime);
         console.log('endTime', endTime);
         this.scheduleJob[scheduleItem.schedule.id] = schedule.scheduleJob({
@@ -126,8 +128,11 @@ class ArboxSchedule {
             if (fetch) {
                 try {
                     const res = yield fetch();
+                    if (res.errorCode === error_constant_1.ARBOX_ERRORS.REGISTER_NOT_OPEN_YET) {
+                        return;
+                    }
                     this.removeSchedule(scheduleItem.schedule.id);
-                    console.log('your in the workout!!', scheduleItem.schedule.id);
+                    console.log('your in the workout!!', scheduleItem.schedule.id, scheduleItem.category, res);
                 }
                 catch (e) {
                     this.removeSchedule(scheduleItem.schedule.id);
