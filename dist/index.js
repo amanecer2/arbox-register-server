@@ -5,7 +5,7 @@ var cors = require('cors');
 const arbox_schedule_1 = require("./utils/arbox-schedule");
 const arbox_1 = require("./routes/arbox");
 // @ts-ignore
-fs.readFile(`dist/data/data.json`, "utf8", function (err, data) {
+fs.readFile(`data/data.json`, "utf8", function (err, data) {
     console.log('before');
     if (err)
         throw err;

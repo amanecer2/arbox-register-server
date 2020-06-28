@@ -6,7 +6,7 @@ export const saveData = (arboxScheduleService: ArboxScheduleService) => {
         users: arboxScheduleService.users,
         schedule: arboxScheduleService.schedule
     };
-    fs.writeFile('dist/data/data.json', JSON.stringify(data), function (err) {
+    fs.writeFile('data/data.json', JSON.stringify(data), function (err) {
         if (err) return console.log(err);
         console.log('saved');
     });

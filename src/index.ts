@@ -12,7 +12,7 @@ import {ArboxScheduleService, IUser} from "./utils/arbox-schedule";
 import arboxRouter from './routes/arbox';
 
 // @ts-ignore
-fs.readFile(`dist/data/data.json`, "utf8", function (err, data) {
+fs.readFile(`data/data.json`, "utf8", function (err, data) {
     console.log('before');
 
     if (err) throw err;
