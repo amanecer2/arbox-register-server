@@ -57,12 +57,15 @@ fs.readFile(`data/data.json`, "utf8", function (err, data) {
         console.log('starting on port', port)
     });
 
-    /*let reqTimer = setTimeout(function wakeUp() {
+    let reqTimer = setTimeout(function wakeUp() {
+        if (Object.keys(arboxUserSchedule.schedule).length === 0) {
+            return
+        }
         request("https://arbox-register.herokuapp.com", function() {
             console.log("WAKE UP DYNO");
         });
         return reqTimer = setTimeout(wakeUp, 1200000);
-    }, 1200000);*/
+    }, 1200000);
 
 
 
