@@ -65,7 +65,9 @@ fs.readFile(`data/data.json`, "utf8", function (err, data) {
     }, 1200000);*/
 
 
-    process.on('exit', () => {
-        console.log('exiting the app, if we have any schedule i should do re wakeup')
-    })
+
 });
+
+process.on('exit', () => {
+    console.log('exiting the app, if we have any schedule i should do re wakeup')
+})
