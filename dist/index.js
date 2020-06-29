@@ -6,7 +6,7 @@ const arbox_schedule_1 = require("./utils/arbox-schedule");
 const arbox_1 = require("./routes/arbox");
 // @ts-ignore
 fs.readFile(`data/data.json`, "utf8", function (err, data) {
-    console.log('before', data);
+    console.log('before');
     if (err)
         throw err;
     const arboxUserSchedule = new arbox_schedule_1.ArboxScheduleService();
@@ -46,8 +46,24 @@ fs.readFile(`data/data.json`, "utf8", function (err, data) {
         });
         return reqTimer = setTimeout(wakeUp, 1200000);
     }, 1200000);*/
-    process.on('exit', () => {
-        console.log('exiting the app, if we have any schedule i should do re wakeup');
-    });
+});
+process.on('beforeExit', code => {
+    // Can make asynchronous calls
+    setTimeout(() => {
+        console.log(`Process will exit with code: ${code}`);
+        process.exit(code);
+    }, 100);
+});
+process.on('exit', code => {
+    // Only synchronous calls
+    console.log(`Process exited with code: ${code}`);
+});
+process.on('SIGTERM', signal => {
+    console.log(`Process ${process.pid} received a SIGTERM signal`);
+    process.exit(0);
+});
+process.on('SIGINT', signal => {
+    console.log(`Process ${process.pid} has been interrupted`);
+    process.exit(0);
 });
 //# sourceMappingURL=index.js.map
