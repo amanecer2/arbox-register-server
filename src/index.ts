@@ -59,8 +59,11 @@ fs.readFile(`data/data.json`, "utf8", function (err, data) {
 
     let reqTimer = setTimeout(function wakeUp() {
         if (Object.keys(arboxUserSchedule.schedule).length === 0) {
+            console.log('no future schedule')
             return
         }
+        console.log('there is shome future schedule ', Object.keys(arboxUserSchedule.schedule).length)
+
         request("https://arbox-register.herokuapp.com", function() {
             console.log("WAKE UP DYNO");
         });
