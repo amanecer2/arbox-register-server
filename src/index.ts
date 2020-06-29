@@ -1,4 +1,4 @@
-import {request} from "http";
+import fetch from "node-fetch";
 
 var express = require('express'),
     bodyParser = require('body-parser'),
@@ -64,11 +64,11 @@ fs.readFile(`data/data.json`, "utf8", function (err, data) {
         }
         console.log('there is shome future schedule ', Object.keys(arboxUserSchedule.schedule).length)
 
-        request("https://arbox-register.herokuapp.com", function() {
+        fetch("https://arbox-register.herokuapp.com").then(res => {
             console.log("WAKE UP DYNO");
+            return reqTimer = setTimeout(wakeUp, 1200000);
         });
-        return reqTimer = setTimeout(wakeUp, 1200000);
-    }, 1200000);
+    }, 600000);//1200000);
 
 
 
