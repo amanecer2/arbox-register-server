@@ -1,3 +1,5 @@
+import {request} from "http";
+
 var express = require('express'),
     bodyParser = require('body-parser'),
     fs = require('fs'),
@@ -55,4 +57,15 @@ fs.readFile(`data/data.json`, "utf8", function (err, data) {
         console.log('starting on port', port)
     });
 
+    /*let reqTimer = setTimeout(function wakeUp() {
+        request("https://arbox-register.herokuapp.com", function() {
+            console.log("WAKE UP DYNO");
+        });
+        return reqTimer = setTimeout(wakeUp, 1200000);
+    }, 1200000);*/
+
+
+    process.on('exit', () => {
+        console.log('exiting the app, if we have any schedule i should do re wakeup')
+    })
 });
