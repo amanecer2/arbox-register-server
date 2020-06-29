@@ -6,7 +6,7 @@ const arbox_schedule_1 = require("./utils/arbox-schedule");
 const arbox_1 = require("./routes/arbox");
 // @ts-ignore
 fs.readFile(`data/data.json`, "utf8", function (err, data) {
-    console.log('before');
+    console.log('before', data);
     if (err)
         throw err;
     const arboxUserSchedule = new arbox_schedule_1.ArboxScheduleService();
@@ -39,6 +39,15 @@ fs.readFile(`data/data.json`, "utf8", function (err, data) {
     });
     app.listen(port, () => {
         console.log('starting on port', port);
+    });
+    /*let reqTimer = setTimeout(function wakeUp() {
+        request("https://arbox-register.herokuapp.com", function() {
+            console.log("WAKE UP DYNO");
+        });
+        return reqTimer = setTimeout(wakeUp, 1200000);
+    }, 1200000);*/
+    process.on('exit', () => {
+        console.log('exiting the app, if we have any schedule i should do re wakeup');
     });
 });
 //# sourceMappingURL=index.js.map
