@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+const http_1 = require("http");
 var express = require('express'), bodyParser = require('body-parser'), fs = require('fs'), app = express(), inContainer = process.env.CONTAINER, inAzure = process.env.WEBSITE_RESOURCE_GROUP, notDevelop = process.argv.slice(2)[0], port = process.env.PORT || 3000;
 var cors = require('cors');
 const arbox_schedule_1 = require("./utils/arbox-schedule");
@@ -40,12 +41,17 @@ fs.readFile(`data/data.json`, "utf8", function (err, data) {
     app.listen(port, () => {
         console.log('starting on port', port);
     });
-    /*let reqTimer = setTimeout(function wakeUp() {
-        request("https://arbox-register.herokuapp.com", function() {
+    let reqTimer = setTimeout(function wakeUp() {
+        if (Object.keys(arboxUserSchedule.schedule).length === 0) {
+            console.log('no future schedule');
+            return;
+        }
+        console.log('there is shome future schedule ', Object.keys(arboxUserSchedule.schedule).length);
+        http_1.request("https://arbox-register.herokuapp.com", function () {
             console.log("WAKE UP DYNO");
         });
         return reqTimer = setTimeout(wakeUp, 1200000);
-    }, 1200000);*/
+    }, 1200000);
 });
 process.on('beforeExit', code => {
     // Can make asynchronous calls
