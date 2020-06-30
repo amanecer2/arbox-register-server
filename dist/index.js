@@ -51,7 +51,7 @@ fs.readFile(`data/data.json`, "utf8", function (err, data) {
             console.log("WAKE UP DYNO");
             return reqTimer = setTimeout(wakeUp, 1200000);
         });
-    }, 600000); //1200000);
+    }, 1200000); //1200000);
 });
 process.on('beforeExit', code => {
     // Can make asynchronous calls

@@ -120,7 +120,7 @@ export class ArboxSchedule {
         if (+timeBeforeAllow < +new Date() || scheduleItem.schedule.enableRegistrationTime === 0) {
             timeBeforeAllow = new Date()
         }
-        const startTime = new Date(+new Date(timeBeforeAllow) - (3 * 10 * 1000)); // 30 seconds before
+        const startTime = new Date(+new Date(timeBeforeAllow) - (9 * 10 * 1000)); // 90 seconds before
         const endTime = new Date(+new Date(timeBeforeAllow) + (2 * 60 * 1000)); // 2 min after
 
         //console.log('workoutDateWithTime', workoutDateWithTime);
